@@ -42,7 +42,7 @@ export default function CoreFeature() {
       setAlert({ type: "success", message: "Email was succesfully sent" });
     } catch (error) {
       setLoading(false);
-      setAlert({ type: "danger", message: "Email was succesfully sent" });
+      setAlert({ type: "danger", message: "Internal Server Error" });
     }
   };
 
