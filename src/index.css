@@ -1,0 +1,35 @@
+body {
+  overflow-x: hidden;
+}
+
+main {
+  min-height: 80vh;
+}
+
+input:focus {
+  outline: none;
+}
+.selected-flag {
+  background-color: rgb(44, 46, 48);
+  border: none !important;
+}
+
+.selected-flag:hover {
+  background-color: rgb(44, 46, 48) !important;
+}
+
+.flag-dropdown {
+  border: none !important;
+  /* border-radius: 0 !important; */
+  top: 2.9px !important;
+  bottom: 2.9px !important;
+  left: 2.9px !important;
+}
+
+.arrow {
+  border-top: 3px solid #fff !important;
+}
+
+.ReactModal__Overlay {
+  z-index: 10;
+}
