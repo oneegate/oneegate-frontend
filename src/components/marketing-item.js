@@ -1,5 +1,7 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { Card, Heading, Text } from "@theme-ui/components";
-import React from "react";
 
 export default function MarketingItem({
   item: { heading, description, image },
@@ -11,10 +13,12 @@ export default function MarketingItem({
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${image})`,
       }}
     >
-      <Heading variant="title" color="#fff">
+      <span className='marketing-content-div'>
+      <Heading variant="title" color="#fff" as='h1' sx={{color: 'inherit'}}>
         {heading}
       </Heading>
       <Text as="p">{description}</Text>
+      </span>
     </Card>
   );
 }
@@ -36,8 +40,10 @@ const styles = {
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.2)",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    color: 'transparent !important',
     "&:hover": {
       borderBottom: "5px solid #00ccff",
+      color: 'white !important',
     },
   },
 };

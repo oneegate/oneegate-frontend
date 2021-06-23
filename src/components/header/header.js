@@ -43,14 +43,20 @@ export default function Header({ className, history }) {
           >
               Contact
           </Link2>
+          <Link2
+          to='/careers'
+          sx={{textDecoration: 'none', color: '#fff', '&:hover': {color: '#00ccff'}}}
+          >
+              Careers
+          </Link2>
         </Flex>
           <Button
             className="donate__btn"
             variant="secondary"
-            aria-label="Get Started"
+            aria-label="Talk To Us"
             onClick={() => history.push('/contact')}
           >
-            Get Started
+            Talk To Us
           </Button>
         <MobileDrawer />
       </Container>

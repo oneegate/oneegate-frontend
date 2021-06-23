@@ -6,6 +6,7 @@ import InputContact from "../components/input-contact";
 import TextFeature from "../components/text-feature";
 import axios from "axios";
 import Loader from '../components/loader'
+import { BACKEND_BASE_URI } from "../util/base-uri";
 
 const data = {
   subTitle: "Contact",
@@ -30,7 +31,7 @@ export default function CoreFeature() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("https://oneegate.herokuapp.com/contact", {
+      await axios.post(`${BACKEND_BASE_URI}/contact`, {
         firstName,
         lastName,
         companyEmail,
