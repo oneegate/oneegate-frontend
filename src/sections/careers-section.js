@@ -30,6 +30,8 @@ export default function CareersSection() {
       <Container sx={styles.containerBox}>
         {items.length === 0 ? (
           <Loader />
+        ) : items.length === 0 ? (
+          <h1>No Jobs are present currently, Please come back later</h1>
         ) : (
           <React.Fragment>
             <Text as="h1" sx={{ fontWeight: "900", marginBottom: '2rem' }}>

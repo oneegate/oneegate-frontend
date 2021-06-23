@@ -6,13 +6,12 @@ import axios from "axios";
 import { BACKEND_BASE_URI } from "../util/base-uri";
 import JobItem from "../components/job-item";
 import Loader from "../components/loader";
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory } from "react-router-dom";
 
-export default function Admin()
- {
+export default function Admin() {
   const [items, setItems] = useState([]);
-  const location = useLocation()
-  const history = useHistory()
+  const location = useLocation();
+  const history = useHistory();
 
   async function getData() {
     try {
@@ -29,28 +28,49 @@ export default function Admin()
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BACKEND_BASE_URI}/career/${id}`)
-      getData()
+      await axios.delete(`${BACKEND_BASE_URI}/career/${id}`);
+      getData();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <section sx={{ variant: "section.coreFeature" }}>
       <Container sx={styles.containerBox}>
-        {items.length === 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            marginBottom: "5rem",
+          }}
+        >
+          <h1>Admin Dashboard</h1>
+          <Button
+            variant="primary"
+            onClick={() => history.push("/admin-dashboard/create")}
+          >
+            Create a Job
+          </Button>
+        </Box>
+        {!items ? (
           <Loader />
+        ) : items.length === 0 ? (
+          <h1>No Jobs Posted yet</h1>
         ) : (
           <React.Fragment>
-            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', marginBottom: '5rem'}}>
-            <h1>Admin Dashboard</h1>
-            <Button variant='primary' onClick={() => history.push('/admin-dashboard/create')}>Create a Job</Button>
-            </Box>
-            <Box sx={{paddingLeft: ['0', '20rem'], paddingRight: ['0', '20rem']}}>
-            {items.map((item) => (
-              <JobItem key={item._id} item={item} handleDelete={handleDelete} />
-            ))}
+            <Box
+              sx={{ paddingLeft: ["0", "20rem"], paddingRight: ["0", "20rem"] }}
+            >
+              {items.map((item) => (
+                <JobItem
+                  key={item._id}
+                  item={item}
+                  handleDelete={handleDelete}
+                />
+              ))}
             </Box>
           </React.Fragment>
         )}
