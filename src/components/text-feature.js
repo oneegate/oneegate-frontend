@@ -9,6 +9,7 @@ export default function TextFeature({
   description,
   btnName,
   btnURL = "#",
+  coreFeature,
 }) {
   const [colorMode] = useColorMode();
   return (
@@ -27,7 +28,17 @@ export default function TextFeature({
           {title}
         </Heading>
       </Box>
-      {description && (
+      {description && coreFeature ? (
+        <Text
+          as="p"
+          className="description"
+          sx={styles.description}
+          style={
+            colorMode === "default" ? { color: "#0F2137" } : { color: "#fff" }
+          }
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></Text>
+      ) : (
         <Text
           as="p"
           className="description"
