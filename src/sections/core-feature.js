@@ -1,9 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Box, Image } from "theme-ui";
-import TextFeature from "../components/text-feature";
-
-import FeatureThumb from "../assets/core-feature.png";
+import { jsx, Container, Box, Text, Heading, Button } from "theme-ui";
+import CoreFeatureBg from '../assets/core-features-bg.jpg'
 
 const data = {
   subTitle: "Hospitality Consultancy",
@@ -44,64 +42,28 @@ const data = {
 
 export default function CoreFeature() {
   return (
-    <section sx={{ variant: "section.coreFeature" }}>
-      <Container sx={styles.containerBox}>
-        <Box sx={styles.contentBox}>
-          <TextFeature
-            subTitle={data.subTitle}
-            title={data.title}
-            btnName={data.btnName}
-            description={data.description}
-            btnURL={data.btnURL}
-            coreFeature
-          />
-        </Box>
-        <Box sx={styles.thumbnail}>
-          <Image src={FeatureThumb} alt="Thumbnail" />
-          {/* <Box sx={styles.shapeBox}>
-            <Image src={shapePattern} alt="Shape" />
-          </Box> */}
-        </Box>
-      </Container>
+    <section sx={{ variant: "section.coreFeature"}}>
+      <Box sx={styles.coreFeature}>
+        <Container sx={{display: ['block', 'flex']}}>
+        <div sx={{flex: '1', alignSelf: ['unset', 'center']}}>
+          <Heading sx={{fontSize: '2rem', marginTop: '2rem'}} color='#fff'>Hospitality Consultancy</Heading>
+        </div>
+        <div sx={styles.coreFeatureRight}>
+        <Text as='p' dangerouslySetInnerHTML={{__html: data.description}}></Text>
+        </div>
+        </Container>
+        <div sx={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '2rem'}}>
+        <Button variant='primary' sx={{marginBottom: '2rem'}}>Talk to Us</Button>
+        </div>
+      </Box>
     </section>
   );
 }
 
 const styles = {
-  containerBox: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexWrap: ["wrap", null, null, "nowrap"],
-    pb: [0, 7, 0, null, 7],
+  coreFeature: {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(${CoreFeatureBg})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   },
-  contentBox: {
-    flexShrink: 0,
-    px: [0, null, "30px", 0],
-    textAlign: ["center", null, null, "left"],
-    width: ["100%", "80%", null, 340, 400, 430, null, 485],
-    pb: ["50px", "60px", null, 0],
-    mx: ["auto", null, null, 0],
-    ".description": {
-      pr: [0, null, 6, 7, 6],
-    },
-  },
-  thumbnail: {
-    display: "inline-flex",
-    position: "relative",
-    mr: "auto",
-    ml: ["auto", null, null, null, 7],
-    "> img": {
-      position: "relative",
-      zIndex: 1,
-      height: [310, "auto"],
-    },
-  },
-  shapeBox: {
-    position: "absolute",
-    bottom: -65,
-    right: -165,
-    zIndex: -1,
-    display: ["none", "inline-block", "none", null, "inline-block"],
-  },
-};
+}
