@@ -1,1 +1,1 @@
-export const BACKEND_BASE_URI = 'http://oneegate.herokuapp.com'
+export const BACKEND_BASE_URI = 'https://oneegate.herokuapp.com'
