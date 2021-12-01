@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BACKEND_BASE_URI } from "../util/base-uri";
 import InputContact from "../components/input-contact";
-import FileBase from "react-file-base64";
-import Loader from '../components/loader'
+import Loader from "../components/loader";
 
 export default function CareersSection() {
   const [item, setItem] = useState(null);
@@ -40,21 +39,33 @@ export default function CareersSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(name === '' || email === '' || phone === '' || coverLetter === '' || document === ''){
-        setAlert('All fields are required')
-    }else{
-        setLoading(true);
-    try {
-      await axios.post(
-        `${BACKEND_BASE_URI}/career/${match.params.id}`,
-        { name, email, phone, coverLetter, document }
-      );
-      setLoading(false);
-      setAlert({ type: "success", message: "Request Successfully Submitted" });
-    } catch (error) {
-      setLoading(false);
-      setAlert({ type: "danger", message: "Internal Server Error" });
-    }
+    if (
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      coverLetter === "" ||
+      document === ""
+    ) {
+      setAlert("All fields are required");
+    } else {
+      setLoading(true);
+      try {
+        await axios.post(`${BACKEND_BASE_URI}/career/${match.params.id}`, {
+          name,
+          email,
+          phone,
+          coverLetter,
+          document,
+        });
+        setLoading(false);
+        setAlert({
+          type: "success",
+          message: "Request Successfully Submitted",
+        });
+      } catch (error) {
+        setLoading(false);
+        setAlert({ type: "danger", message: "Internal Server Error" });
+      }
     }
   };
 
@@ -89,9 +100,13 @@ export default function CareersSection() {
             onSubmit={handleSubmit}
             sx={{ backgroundColor: "white", padding: "2rem", flex: 0.45 }}
           >
-            <h1 sx={{ color: "black", marginBottom: '0.5rem' }}>Apply For This position</h1>
+            <h1 sx={{ color: "black", marginBottom: "0.5rem" }}>
+              Apply For This position
+            </h1>
             {loading && <Loader />}
-            {alert.message && (<Alert variant={alert.type}>{alert.message}</Alert>)}
+            {alert.message && (
+              <Alert variant={alert.type}>{alert.message}</Alert>
+            )}
             <InputContact
               label="Full Name*"
               type="text"
@@ -129,15 +144,15 @@ export default function CareersSection() {
                 textTransform: "uppercase",
               }}
             >
-              Upload CV/Resume *
+              Link of CV/Resume *
             </Text>
-            <Box sx={{ width: "100%", margin: "0 0 3rem 0" }}>
-              <FileBase
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) => setDocument(base64)}
-              />
-            </Box>
+            <InputContact
+              textArea={true}
+              col={10}
+              row={10}
+              value={document}
+              onChange={(e) => setDocument(e.target.value)}
+            />
             <Button type="submit" variant="primary">
               Submit
             </Button>
